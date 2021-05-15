@@ -1,4 +1,8 @@
 pipeline {
+    agent {
+  label 'Linux-agent1'
+  }
+
     environment {
         PATH="${getmaven()}:${PATH}"
     }
@@ -8,7 +12,11 @@ pipeline {
                 git 'https://github.com/kalyanp89/myweb.git'
             }
         }
-        
+        stage("Maven Buils"){
+            steps{
+                sh 'mvn clean package'
+            }
+        }
     }
 }
 
